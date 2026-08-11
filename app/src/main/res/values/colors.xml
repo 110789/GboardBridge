@@ -1,0 +1,36 @@
+<resources>
+    <!-- 品牌色从红色换成了中性的深灰蓝——两个设置页都已经接了 Material You
+         动态取色（Android 12+ 跟随系统壁纸），这里定义的只是「系统不支持动态
+         取色时」的退回颜色，不希望这个退回颜色本身带有强烈的"红色主题"感。 -->
+    <color name="brand_red">#37474F</color>
+    <color name="brand_red_dark">#263238</color>
+    <color name="background">#FAFAFA</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="on_surface">#1B1B1B</color>
+    <color name="on_surface_muted">#6B6B6B</color>
+
+    <!-- 以下是 BiBi IME Bridge 的颜色资源，全部带 bridge_ 前缀，没有命名冲突。
+         背景/文字色本来就跟本模块自己的浅灰底、深色字很接近，没动；
+         强调色系统一成中性深灰蓝（原来是绿色 #1B7F5A，后来一度改成红色，
+         现在换成不带强烈色彩倾向的灰蓝，作为动态取色不可用时的退回色）。
+         bridge_chip_idle_bg 是「未激活」状态的中性灰底，不是强调色，保持不变。 -->
+    <color name="bridge_bg">#FFF4F6F8</color>
+    <color name="bridge_surface">#FFFFFFFF</color>
+    <color name="bridge_surface_muted">#FFF0F3F6</color>
+    <color name="bridge_outline">#1A1B1F24</color>
+    <color name="bridge_text_primary">#FF1A1C1E</color>
+    <color name="bridge_text_secondary">#FF5F6368</color>
+    <color name="bridge_text_tertiary">#FF8A9098</color>
+    <color name="bridge_accent">#FF37474F</color>
+    <color name="bridge_accent_soft">#1A37474F</color>
+    <color name="bridge_chip_idle_bg">#14202830</color>
+    <color name="bridge_chip_recording_bg">#1F37474F</color>
+    <color name="bridge_preview_stage">#FFF7F9FB</color>
+    <color name="bridge_ripple">#1F37474F</color>
+    <color name="bridge_button_outline">#3337474F</color>
+
+    <!-- colorPrimary 上面印的文字/图标颜色——浅色模式下 brand_red 是深色，
+         所以这里是白；深色模式下 brand_red 变浅（见 values-night），这个也
+         要跟着变深，不然白字印在浅色块上看不清。 -->
+    <color name="on_brand">#FFFFFF</color>
+</resources>

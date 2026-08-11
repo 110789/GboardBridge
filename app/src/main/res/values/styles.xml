@@ -1,0 +1,109 @@
+<resources>
+    <!--
+      这一套样式是照着合并进来的 BiBi IME Bridge 那套界面（手绘 Java UI）的观感调的：
+      白色圆角卡片浮在浅灰底上、无边框、小写字号的"眉标"当分区标题、
+      13sp 说明文字、圆角输入框——比之前那种"红色粗体标题 + 平铺开关"的朴素布局
+      更接近现代设置页的样子。
+    -->
+
+    <!-- 卡片：20dp 圆角、1dp 阴影、无描边，跟 BiBi 那边 createCard() 的参数一致。 -->
+    <style name="Card" parent="Widget.Material3.CardView.Elevated">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardElevation">1dp</item>
+        <item name="strokeWidth">0dp</item>
+        <item name="cardBackgroundColor">@color/surface</item>
+        <item name="contentPadding">18dp</item>
+    </style>
+
+    <!-- 分区小标题："眉标"风格——小字号、有字间距、不抢戏，卡片上方各放一个。 -->
+    <style name="Eyebrow">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/on_surface_muted</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0.06</item>
+    </style>
+
+    <!-- 卡片内部，同一张卡里几个开关之间的分隔线，很淡，不抢戏。 -->
+    <style name="CardDivider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:background">@color/bridge_outline</item>
+    </style>
+
+    <!-- 保存按钮：改成"白色"描边按钮，不是实心色块——背景用 @color/surface
+         （浅色模式白、深色模式跟着卡片背景变深），只用一圈描边 + 文字表达它是
+         主按钮，不靠大面积颜色块。 -->
+    <style name="PrimaryButton" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="backgroundTint">@color/surface</item>
+        <item name="android:textColor">@color/on_surface</item>
+        <item name="strokeColor">@color/bridge_outline</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="cornerRadius">16dp</item>
+    </style>
+
+    <!-- 卡片里那种"整张卡就是一个可点击入口"的按钮（跳转 BiBi 设置用）——
+         透明背景、左对齐、看起来像列表项而不是一个突兀的按钮。 -->
+    <style name="CardLinkButton">
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:textColor">@color/on_surface</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:gravity">center_vertical|start</item>
+        <item name="android:paddingStart">2dp</item>
+        <item name="android:paddingEnd">2dp</item>
+    </style>
+
+    <!--
+      parent 必须是这个 —— Theme.MaterialComponents(非 Material3)主题下，
+      MaterialSwitch 不带默认 style 会走到 AppCompat 的 SwitchCompat 逻辑，
+      在测量阶段对一个不存在的文本调 StaticLayout，直接 NPE 崩溃。
+      见 https://github.com/material-components/material-components-android/issues/2725
+
+      android:textAppearance 显式设成 @null——不设的话 Material3 那套默认
+      style 自带一个 textAppearance（字号很小），它的优先级比下面这几条
+      android:textSize/textColor 更高，会把它们盖掉，调 textSize 看着跟没调一样。
+    -->
+    <style name="FeatureSwitch" parent="Widget.Material3.CompoundButton.MaterialSwitch">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@null</item>
+        <item name="android:textColor">@color/on_surface</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="FeatureSummary">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:textColor">@color/on_surface_muted</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+    </style>
+
+    <!-- 输入框：圆角加大、浅灰底填充，看起来像嵌在白卡片里的小组件，
+         而不是一条突兀的描边框。 -->
+    <style name="InputBox" parent="Widget.Material3.TextInputLayout.FilledBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="boxCornerRadiusTopStart">14dp</item>
+        <item name="boxCornerRadiusTopEnd">14dp</item>
+        <item name="boxCornerRadiusBottomStart">14dp</item>
+        <item name="boxCornerRadiusBottomEnd">14dp</item>
+        <item name="boxBackgroundColor">@color/background</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">1dp</item>
+        <item name="hintTextColor">@color/on_surface_muted</item>
+    </style>
+</resources>

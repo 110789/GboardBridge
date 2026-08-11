@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="28dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/on_surface"
+            android:textSize="26sp"
+            android:fontFamily="sans-serif-medium" />
+
+        <TextView
+            android:id="@+id/hintText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/hint_lsposed"
+            android:textColor="@color/on_surface_muted"
+            android:textSize="13sp"
+            android:lineSpacingExtra="2dp" />
+
+        <!-- 剪贴板 -->
+        <TextView
+            style="@style/Eyebrow"
+            android:text="@string/section_clipboard" />
+
+        <com.google.android.material.card.MaterialCardView style="@style/Card">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/switchCount"
+                    style="@style/FeatureSwitch"
+                    android:text="@string/feature_count_title" />
+                <TextView style="@style/FeatureSummary" android:text="@string/feature_count_summary" />
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/InputBox"
+                    android:hint="@string/label_max_items">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputMaxItems"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <View style="@style/CardDivider" />
+
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/switchTtl"
+                    style="@style/FeatureSwitch"
+                    android:text="@string/feature_ttl_title" />
+                <TextView style="@style/FeatureSummary" android:text="@string/feature_ttl_summary" />
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/InputBox"
+                    android:hint="@string/label_ttl_minutes">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputTtlMinutes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <View style="@style/CardDivider" />
+
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/switchChars"
+                    style="@style/FeatureSwitch"
+                    android:text="@string/feature_chars_title" />
+                <TextView style="@style/FeatureSummary" android:text="@string/feature_chars_summary" />
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/InputBox"
+                    android:hint="@string/label_char_limit">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputCharLimit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <Button
+            android:id="@+id/saveButton"
+            style="@style/PrimaryButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/action_save" />
+
+        <!-- 跳转到 BiBi IME Bridge 那套设置——桌面只留一个图标，
+             这个按钮是进它设置界面的唯一入口。 -->
+        <TextView
+            style="@style/Eyebrow"
+            android:text="@string/section_bibi" />
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Card"
+            android:layout_marginBottom="12dp">
+
+            <Button
+                android:id="@+id/openBibiSettings"
+                style="@style/CardLinkButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/action_open_bibi_settings" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/versionText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:textColor="@color/on_surface_muted"
+            android:textSize="11sp"
+            tools:text="v0.0" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

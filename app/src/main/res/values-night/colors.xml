@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 同 values/colors.xml，强调色统一成中性灰蓝（不带红色）；深色模式下用
+         稍浅一点的色调保证在深色背景上对比度够，跟原来红/绿两版的处理方式
+         一致，只是换了色系。 -->
+    <color name="bridge_bg">#FF0F1115</color>
+    <color name="bridge_surface">#FF1A1D24</color>
+    <color name="bridge_surface_muted">#FF232833</color>
+    <color name="bridge_outline">#28FFFFFF</color>
+    <color name="bridge_text_primary">#FFF2F4F7</color>
+    <color name="bridge_text_secondary">#FFAEB4BE</color>
+    <color name="bridge_text_tertiary">#FF7E8694</color>
+    <color name="bridge_accent">#FF90A4AE</color>
+    <color name="bridge_accent_soft">#2990A4AE</color>
+    <color name="bridge_chip_idle_bg">#24FFFFFF</color>
+    <color name="bridge_chip_recording_bg">#3390A4AE</color>
+    <color name="bridge_preview_stage">#FF141820</color>
+    <color name="bridge_ripple">#3390A4AE</color>
+    <color name="bridge_button_outline">#6690A4AE</color>
+
+    <!-- 之前只有上面这些 bridge_* 颜色有夜间版本，本模块自己这屏
+         （background/surface/on_surface/on_surface_muted、还有作为
+         colorPrimary 退回值的 brand_red）一直没适配深色模式——
+         直接复用跟 bridge_* 同一套深色配色，保持两屏在深色模式下也统一。 -->
+    <color name="background">@color/bridge_bg</color>
+    <color name="surface">@color/bridge_surface</color>
+    <color name="on_surface">@color/bridge_text_primary</color>
+    <color name="on_surface_muted">@color/bridge_text_secondary</color>
+    <color name="brand_red">@color/bridge_accent</color>
+    <color name="brand_red_dark">#FF78909C</color>
+    <color name="on_brand">@color/bridge_surface</color>
+</resources>

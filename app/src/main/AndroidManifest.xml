@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:theme="@style/Theme.GboardHooker">
+
+        <!--
+          LSPosed / Xposed 模块元数据。
+          这些 meta-data 是整个模块（这一个 APK）级别的，不是按 hook 入口分的——
+          GboardHooker 和 BiBi IME Bridge 各自原来的清单里都有一份，合并成一个模块后
+          只能留一份，这里统一取要求更高的那个值：
+          - xposedminversion 取两者较大值 93（GboardHooker 需要，BiBi 原本只要 82，
+            93 向下兼容 82 的需求，不影响 BiBi 那部分功能）
+          - xposedsharedprefs 沿用 BiBi 原来的声明，两边的设置读取都用得上
+          - xposeddescription 换成一份合并后的描述（对应 strings.xml 里改过的
+            module_description）
+        -->
+        <meta-data
+            android:name="xposedmodule"
+            android:value="true" />
+        <meta-data
+            android:name="xposeddescription"
+            android:value="@string/module_description" />
+        <meta-data
+            android:name="xposedminversion"
+            android:value="93" />
+        <meta-data
+            android:name="xposedsharedprefs"
+            android:value="true" />
+        <meta-data
+            android:name="xposedscope"
+            android:resource="@array/xposed_scope" />
+
+        <!-- GboardHooker 自己的设置界面 -->
+        <activity
+            android:name=".ui.SettingsActivity"
+            android:exported="true"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--
+          BiBi IME Bridge 自己的设置界面 + ContentProvider，从
+          https://github.com/BryceWG/bibi-keyboard-lsposed-bridge 合并进来。
+          原清单里这两个用的是 ".BridgeVisualSettingsActivity" 这种简写，那是相对于
+          它自己原来的包名（com.brycewg.asrkb.imebridge）解析的；合并到这个模块后
+          默认包名变成了 io.github.a110789.gboardhooker，简写会解析到错误的类，
+          所以这里都改成了完整类名。
+
+          原本它自己也带一个 MAIN/LAUNCHER，会在桌面多出一个图标。这里去掉了这个
+          intent-filter，改成从 GboardHooker 自己的设置页里用一个按钮跳转过来
+          （见 SettingsActivity 里的 "BiBi 桥接设置" 按钮）——桌面只留一个图标，
+          代价是这两块设置隔着一次点击，不是拼在同一个可滚动页面里。
+          exported 也相应改成 false：只有本 App 自己会启动它，不需要开放给外部。
+        -->
+        <activity
+            android:name="com.brycewg.asrkb.imebridge.BridgeVisualSettingsActivity"
+            android:exported="false"
+            android:label="@string/bridge_visual_title"
+            android:theme="@style/Theme.ImeBridge" />
+
+        <provider
+            android:name="com.brycewg.asrkb.imebridge.BridgeVisualPrefsProvider"
+            android:authorities="com.brycewg.asrkb.imebridge.visualprefs"
+            android:exported="true"
+            android:grantUriPermissions="true" />
+
+    </application>
+
+</manifest>

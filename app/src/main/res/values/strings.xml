@@ -1,0 +1,83 @@
+<resources>
+    <string name="app_name">GboardHooker</string>
+    <string name="module_description">解开 Gboard 剪贴板的条数/有效期/字数限制；集成 BiBi IME Bridge，桥接语音识别文字回填</string>
+
+    <string name="section_clipboard">剪贴板</string>
+
+    <string name="feature_count_title">自定义剪贴板条数</string>
+    <string name="feature_count_summary">原版「最近」一栏只留 5 条，超出的直接看不到</string>
+    <string name="feature_ttl_title">自定义剪贴板有效期</string>
+    <string name="feature_ttl_summary">原版复制满 1 小时就从面板消失</string>
+    <string name="feature_chars_title">自定义剪贴板字数上限</string>
+    <string name="feature_chars_summary">原版单条超过 20000 字会被截断后再存</string>
+
+    <string name="label_max_items">最近保留条数</string>
+    <string name="label_ttl_minutes">有效期（分钟，0 = 永久）</string>
+    <string name="label_char_limit">单条字数上限</string>
+
+    <string name="action_save">保存</string>
+    <string name="hint_saved">已保存，重启 Gboard（或重启输入法）后生效</string>
+    <string name="hint_lsposed">请在 LSPosed 管理器里为本模块勾选 Gboard 作用域，然后重启 Gboard</string>
+
+    <string name="section_bibi">语音输入桥接</string>
+    <string name="action_open_bibi_settings">打开 BiBi 桥接设置</string>
+
+    <!-- 以下是 BiBi IME Bridge 的字符串资源（合并自
+         https://github.com/BryceWG/bibi-keyboard-lsposed-bridge）。
+         app_name 改名成 bibi_app_name 避免跟本模块自己的 app_name 撞名，
+         其余全部沿用原名——它们本来就带 bridge_/feature_bridge_ 前缀，
+         没有跟本模块已有资源冲突。 -->
+    <string name="bibi_app_name">BiBi IME Bridge</string>
+    <string name="bridge_visual_title">Bridge module settings</string>
+    <string name="bridge_visual_summary">Adjust the bottom capture area used by hooked input methods. Changes are best-effort in LSPosed/LSPatch and fall back safely to defaults if the hook process cannot read them.</string>
+    <string name="bridge_visual_preview_title">Preview</string>
+    <string name="bridge_visual_preview_idle">Idle</string>
+    <string name="bridge_visual_preview_recording">Recording</string>
+    <string name="bridge_visual_width_value">Capture width: %1$d dp</string>
+    <string name="bridge_visual_height_value">Capture height: %1$d dp (also lifts the strip from the bottom edge)</string>
+    <string name="bridge_visual_width_label">Width</string>
+    <string name="bridge_visual_height_label">Height</string>
+    <string name="bridge_visual_dp_value">%1$d dp</string>
+    <string name="bridge_visual_height_hint">Also lifts the strip from the bottom edge</string>
+    <string name="bridge_visual_restore_defaults">Restore defaults</string>
+    <string name="bridge_docs_title">Setup guide &amp; docs</string>
+    <string name="bridge_docs_summary">Open the IME Bridge introduction, install steps, and troubleshooting guide</string>
+    <string name="bridge_docs_url">https://bibidocs.brycewg.com/en/advanced/ime-bridge.html</string>
+    <string name="bridge_docs_open_failed">Unable to open the documentation link</string>
+    <string name="bridge_toast_no_input_connection">No editable text field in focus</string>
+    <string name="bridge_toast_sensitive_field">Voice input is unavailable in sensitive fields</string>
+    <string name="bridge_toast_microphone_unavailable">Allow the current input method to use the microphone</string>
+    <string name="bridge_toast_feature_disabled">The module feature is disabled in the app</string>
+    <string name="bridge_toast_protocol_mismatch">The module is incompatible with BiBi Keyboard. Update the module or app</string>
+    <string name="bridge_toast_connection_failed">Unable to connect to the module</string>
+    <string name="bridge_toast_session_unavailable">Voice input is unavailable with the current recognition settings</string>
+    <string name="bridge_toast_recording_failed">Recording failed. Try again</string>
+    <string name="bridge_toast_finish_failed">Unable to finish voice input. Try again</string>
+    <string name="bridge_language_title">Language</string>
+    <string name="bridge_language_summary">Settings screen only. Does not affect hooked input methods.</string>
+    <string name="bridge_language_change">Change language</string>
+    <string name="bridge_language_system">Follow system</string>
+    <string name="bridge_language_english">English</string>
+    <string name="bridge_language_zh_cn">简体中文</string>
+    <string name="bridge_language_zh_tw">繁體中文</string>
+    <string name="bridge_host_target_title">Connection target</string>
+    <string name="bridge_host_target_summary">Choose which BiBi Keyboard build the module connects to.</string>
+    <string name="bridge_host_target_auto">Auto (prefer Pro)</string>
+    <string name="bridge_host_target_pro">BiBi Keyboard Pro</string>
+    <string name="bridge_host_target_open_source">BiBi Keyboard open source</string>
+    <string name="bridge_host_target_change">Change connection target</string>
+    <string name="feature_bridge_host_target_off_desc">Manual targets never fall back. If the selected build is unavailable, PCM and clipboard bridge requests fail.</string>
+    <string name="feature_bridge_host_target_on_desc">Auto prefers BiBi Keyboard Pro and falls back to the open-source build. Manual Pro or open-source targets do not fall back.</string>
+    <string name="bridge_show_recording_area_title">Show recording area</string>
+    <string name="bridge_show_recording_area_summary">Inject the waveform and recording area into hooked keyboards.</string>
+    <string name="feature_bridge_show_recording_area_off_desc">Stops injecting the waveform and recording area. Text insertion, IME visibility, and clipboard bridging stay available.</string>
+    <string name="feature_bridge_show_recording_area_on_desc">Shows the waveform and recording area at the bottom of hooked keyboards. Changes apply the next time the keyboard window is shown.</string>
+    <string name="bridge_recording_only_waveform_title">Show waveform only while recording</string>
+    <string name="bridge_recording_only_waveform_summary">Hide the idle waveform without disabling the recording area.</string>
+    <string name="feature_bridge_recording_only_waveform_off_desc">Keeps the waveform visible while idle and recording.</string>
+    <string name="feature_bridge_recording_only_waveform_on_desc">Hides the waveform while idle. The recording area stays active, and the waveform appears during recording. Changes apply the next time the keyboard window is shown.</string>
+    <string name="bridge_tap_to_toggle_recording_title">Tap to start and stop recording</string>
+    <string name="bridge_tap_to_toggle_recording_summary">Use two taps instead of holding the recording area.</string>
+    <string name="feature_bridge_tap_to_toggle_recording_off_desc">Hold the recording area to start, then release to finish. Moving outside the area cancels recording.</string>
+    <string name="feature_bridge_tap_to_toggle_recording_on_desc">Tap once to start recording and tap again to finish. Changes apply the next time the keyboard window is shown.</string>
+</resources>
